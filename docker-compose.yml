@@ -15,3 +15,18 @@ services:
       MONGO_INITDB_DATABASE: mernauth
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  adminmongo: 
+    image: mrvautin/adminmongo
+    restart: always
+    container_name: adminmongo
+    ports: 
+      - '12345:12345'
+    environment:
+      CONN_NAME: mern
+      HOST: 0.0.0.0
+      PORT: 12345
+      DB_USERNAME: mernuser
+      DB_PASSWORD: mernpass
+      DB_NAME: mernauth
+      DB_HOST: mongo
